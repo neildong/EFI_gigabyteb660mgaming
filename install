@@ -1,0 +1,28 @@
+从linux安装Monterey
+英文在linux制作usb启动盘 https://github.com/Broly1/Hackintosh-linux-Installer
+下载opencore https://github.com/acidanthera/OpenCorePkg/releases
+
+Opencore解压后有个工具包，里面有个macrecovery.py的工具，可以用来下载Monterey的BaseSystem.dmg
+
+假设要在u盘 /dev/sda 安装Moneterey 
+1.删除分区
+sgdisk --zap-all /dev/sda && partprobe
+2.创建gpt
+sgdisk /dev/sda -o
+3.将整个u盘创建成fat分区
+sgdisk /dev/sda--new=0:0: -t 0:0700 && partprobe
+4.格式化
+mkfs.vfat -F 32 -n "OPENCORE" /dev/sda1
+5.挂载
+mount /dev/sda1 /mnt/efi
+6.创建目录
+cd /mnt/efi 
+mkdir com.apple.recovery.boot
+7.
+cp BaseSystem.dmg and BaseSystem.chunklist 到com.apple.recovery.boot目录下
+
+重启后u盘引导安装就行了。
+
+注意事项：
+先将硬盘分区，创建efi分区,fat格式, 300MB,其他空间创建成apfs格式，不需要格式化
+千万不要先在硬盘上的efi分区上拷贝opencore，这样有bug，安装不了..
