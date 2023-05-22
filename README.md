@@ -8,6 +8,6 @@ Build
 	a. Audio: ALC 897, (boot-arg: alcid=11)
 2. CPU i5 12400F
 3. WestData NVME black+blue
-4. RX560 Angda?
+4. RX560 Angda?  // My first video card is broken, it's replaced by a rtx6600, the config is not needed to change.
 
 
